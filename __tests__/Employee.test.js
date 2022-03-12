@@ -19,3 +19,9 @@ test('Employee getId method returns the Employee id', () => {
 
     expect(employee.getId()).toBe(3);
 });
+
+test('Employee getEmail method returns the Employee email', () => {
+    const employee = new Employee('Ronald',4,'Ronald@test.com');
+
+    expect(employee.getEmail()).toBe('Ronald@test.com');
+});
