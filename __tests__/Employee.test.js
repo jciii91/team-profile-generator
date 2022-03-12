@@ -13,3 +13,9 @@ test('Employee getName method returns the Employee name', () => {
 
     expect(employee.getName()).toBe('Kevin');
 });
+
+test('Employee getId method returns the Employee id', () => {
+    const employee = new Employee('Avi',3,'Avi@test.com');
+
+    expect(employee.getId()).toBe(3);
+});
