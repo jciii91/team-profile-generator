@@ -1,6 +1,3 @@
-const inquirer = require('inquirer');
-const Manager = require('./lib/Manager');
-const Engineer = require('./lib/Engineer');
-const Intern = require('./lib/Intern');
+const Team = require('./lib/Team');
 
-console.log("Team Profile Generator\n");
+new Team().getTeam();
