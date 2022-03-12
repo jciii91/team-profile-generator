@@ -1,6 +1,30 @@
 {
   "dependencies": {
     "bootstrap": "^5.1.3",
-    "bootstrap-icons": "^1.8.1"
-  }
+    "bootstrap-icons": "^1.8.1",
+    "inquirer": "^8.2.1"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1"
+  },
+  "name": "team-profile-generator",
+  "description": "A Node.js command-line application that takes in information about employees on a team and generates an HTML webpage that displays summaries for each person.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jciii91/team-profile-generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jciii91/team-profile-generator/issues"
+  },
+  "homepage": "https://github.com/jciii91/team-profile-generator#readme"
 }
