@@ -1,0 +1,22 @@
+.jumbo {
+    background-color: red;
+}
+
+.heading {
+    color: white;
+}
+
+.card {
+    width: 18rem;
+    margin: 10px;
+    background-color: rgb(0, 174, 255);
+}
+
+.card-body, .list-group {
+    padding: 10px;
+    padding-left: 20px;
+}
+
+.list-group {
+    background-color: lightgray;
+}
