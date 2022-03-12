@@ -9,3 +9,27 @@ test('creates a Manager object', () => {
     expect(manager.email).toBe('john@test.com');
     expect(manager.officeNumber).toBe(123456789);
 });
+
+test('Manager getName method returns the Manager name', () => {
+    const manager = new Manager('Kevin',2,'Kevin@test.com');
+
+    expect(manager.getName()).toBe('Kevin');
+});
+
+test('Manager getId method returns the Manager id', () => {
+    const manager = new Manager('Avi',3,'Avi@test.com');
+
+    expect(manager.getId()).toBe(3);
+});
+
+test('Manager getEmail method returns the Manager email', () => {
+    const manager = new Manager('Ronald',4,'Ronald@test.com');
+
+    expect(manager.getEmail()).toBe('Ronald@test.com');
+});
+
+test('Manager getRole method returns Manager', () => {
+    const manager = new Manager('Terry',5,'Terry@test.com');
+
+    expect(manager.getRole()).toBe('Manager');
+});
