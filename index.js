@@ -133,14 +133,93 @@ function getEngineer() {
         )
     })
     .then(option => {
-        if (option.option == 'Add an engineer') {
-            return getEngineer();
-        } else if (option.option == 'Add an intern') {
-            return 'I';
-        } else {
-            return 'F';
-        }
+        return chooseOption(option);
     })
+}
+
+function getIntern() {
+    return inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'What is the intern\'s name? (Required)',
+            validate: nameInput => {
+            if (nameInput) {
+                return true;
+            } else {
+                console.log('Please enter a name!');
+                return false;
+            }
+            }
+        },
+        {
+            type: 'input',
+            name: 'employeeID',
+            message: 'What is the intern\'s employee ID? (Required)',
+            validate: employeeID => {
+            if (employeeID) {
+                return true;
+            } else {
+                console.log('Please enter an ID!');
+                return false;
+            }
+            }
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'What is the intern\'s email? (Required)',
+            validate: email => {
+            if (email) {
+                return true;
+            } else {
+                console.log('Please enter an email!');
+                return false;
+            }
+            }
+        },
+        {
+            type: 'input',
+            name: 'school',
+            message: 'What school does the intern attend? (Required)',
+            validate: school => {
+            if (school) {
+                return true;
+            } else {
+                console.log('Please enter a school!');
+                return false;
+            }
+            }
+        },
+    ])
+    .then(intern => {
+        const {name:name,employeeID:employeeID,email:email,school:school} = intern;
+        tempInt = new Intern(name,employeeID,email,school);
+        newTeam.push(tempInt);
+    })
+    .then(() => {
+        return inquirer.prompt(
+            {
+                type: 'list',
+                name: 'option',
+                message: 'What would you like to do now?',
+                choices: ['Add an engineer','Add an intern','Finish building your team']
+            }
+        )
+    })
+    .then(option => {
+        return chooseOption(option);
+    })
+}
+
+function chooseOption(option) {
+    if (option.option == 'Add an engineer') {
+        return getEngineer();
+    } else if (option.option == 'Add an intern') {
+        return getIntern();
+    } else {
+        return 'F';
+    }
 }
 
 function buildTeam(manager) {
@@ -156,18 +235,9 @@ function buildTeam(manager) {
         const {name:name,employeeID:employeeID,email:email,officeNumber:officeNumber} = manager;
         tempMan = new Manager(name,employeeID,email,officeNumber);
         newTeam.push(tempMan);
-        if (option.option == 'Add an engineer') {
-            return getEngineer();
-        } else if (option.option == 'Add an intern') {
-            return 'I';
-        } else {
-            return 'F';
-        }
+        return chooseOption(option);
     });
 }
-
-// const {name:name,employeeID:employeeID,email:email,officeNumber:officeNumber} = answers;
-// return new Manager(name,employeeID,email,officeNumber);
 
 getManager()
     .then(manager => {
