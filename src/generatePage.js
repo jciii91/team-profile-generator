@@ -1,6 +1,46 @@
 // generate the rest of the team cards
 function getTeam(team) {
-    return 'temp';
+    let members = ``;
+
+    for (let i = 1;i<team.length;i++) {
+        if (team[i].getRole() == 'Engineer') {
+            members += `
+        
+            <div class="card">
+                <!-- Name and Job Title-->
+                <div class="card-body">
+                    <h3>${team[i].getName()}</h4>
+                    <h4><i class="bi bi-eyeglasses"></i> ${team[i].getRole()} </h5>
+                </div>
+                <!-- ID and Info -->
+                <div class="list-group list-group-flush employee-info">
+                    <li class="list-group-item">${team[i].getId()}</li>
+                    <li class="list-group-item">${team[i].getEmail()}</li>
+                    <li class="list-group-item">${team[i].getGithub()}</li>
+                </div>
+            </div>
+            `;
+        } else if (team[i].getRole() == 'Intern') {
+            members += `
+        
+            <div class="card">
+                <!-- Name and Job Title-->
+                <div class="card-body">
+                    <h3>${team[i].getName()}</h4>
+                    <h4><i class="bi bi-book-half"></i> ${team[i].getRole()} </h5>
+                </div>
+                <!-- ID and Info -->
+                <div class="list-group list-group-flush employee-info">
+                    <li class="list-group-item">${team[i].getId()}</li>
+                    <li class="list-group-item">${team[i].getEmail()}</li>
+                    <li class="list-group-item">${team[i].getSchool()}</li>
+                </div>
+            </div>
+            `;
+        }
+    }
+
+    return members;
 }
 
 // export function to generate entire page

@@ -241,13 +241,12 @@ function buildTeam(manager) {
     });
 }
 
-const dummyTeam = [new Manager('John',123,'john@john.com',123456789),new Engineer('John',123,'john@john.com','john'),new Intern('John',123,'john@john.com','school')];
 getManager()
     .then(manager => {
         return buildTeam(manager);
     })
     .then (() => {
-        return generatePage(dummyTeam);
+        return generatePage(newTeam);
     })
     .then(pageHTML => {
         return writeFile(pageHTML);
