@@ -1,3 +1,5 @@
+// code here was copied over from Module 9. used to create the html and css files for dist
+
 const fs = require('fs');
 
 // writing files

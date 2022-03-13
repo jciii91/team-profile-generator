@@ -1,3 +1,4 @@
+// required resources to run application
 const inquirer = require('inquirer');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
@@ -5,8 +6,10 @@ const Intern = require('./lib/Intern');
 const generatePage = require('./src/generatePage');
 const { writeFile, copyFile } = require('./src/generateSite');
 
+// array to hold the team being input
 var newTeam = [];
 
+// receives user input for Manager information
 function getManager() {
     return inquirer.prompt([
         {
@@ -64,6 +67,7 @@ function getManager() {
     ]);
 }
 
+// receives user input for Engineer information
 function getEngineer() {
     return inquirer.prompt([
         {
@@ -119,11 +123,13 @@ function getEngineer() {
             }
         },
     ])
+    // uses inputs to make an object using the Engineer class
     .then(engineer => {
         const {name:name,employeeID:employeeID,email:email,github:github} = engineer;
         tempEng = new Engineer(name,employeeID,email,github);
         newTeam.push(tempEng);
     })
+    // asks user what they would like to do next
     .then(() => {
         return inquirer.prompt(
             {
@@ -139,6 +145,7 @@ function getEngineer() {
     })
 }
 
+// receives user input for Intern information
 function getIntern() {
     return inquirer.prompt([
         {
@@ -194,11 +201,13 @@ function getIntern() {
             }
         },
     ])
+    // uses inputs to make an object using the Intern class
     .then(intern => {
         const {name:name,employeeID:employeeID,email:email,school:school} = intern;
         tempInt = new Intern(name,employeeID,email,school);
         newTeam.push(tempInt);
     })
+    // asks user what they would like to do next
     .then(() => {
         return inquirer.prompt(
             {
@@ -214,6 +223,7 @@ function getIntern() {
     })
 }
 
+// function to direct app based on user selection
 function chooseOption(option) {
     if (option.option == 'Add an engineer') {
         return getEngineer();
@@ -224,6 +234,7 @@ function chooseOption(option) {
     }
 }
 
+// takes the info for the Mananger and makes an object using the Manager class
 function buildTeam(manager) {
     return inquirer.prompt(
         {
@@ -233,6 +244,7 @@ function buildTeam(manager) {
             choices: ['Add an engineer','Add an intern','Finish building your team']
         }
     )
+    // adds Manager as the first memeber of the team
     .then(option => {
         const {name:name,employeeID:employeeID,email:email,officeNumber:officeNumber} = manager;
         tempMan = new Manager(name,employeeID,email,officeNumber);
@@ -241,6 +253,10 @@ function buildTeam(manager) {
     });
 }
 
+// gets the manager info
+// then asks the user for any further info for additional team members
+// then takes the team array and makes the HTML
+// then the files are written and copied into dist
 getManager()
     .then(manager => {
         return buildTeam(manager);

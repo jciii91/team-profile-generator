@@ -2,6 +2,8 @@
 function getTeam(team) {
     let members = ``;
 
+    // loop through each element after the first one, which will always be the mananger
+    // test getRole return value to get which type of employee is being added
     for (let i = 1;i<team.length;i++) {
         if (team[i].getRole() == 'Engineer') {
             members += `
