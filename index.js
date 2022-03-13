@@ -2,6 +2,8 @@ const inquirer = require('inquirer');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
+const generatePage = require('./src/generatePage');
+const { writeFile, copyFile } = require('./src/generateSite');
 
 var newTeam = [];
 
@@ -239,10 +241,24 @@ function buildTeam(manager) {
     });
 }
 
+const dummyTeam = [new Manager('John',123,'john@john.com',123456789),new Engineer('John',123,'john@john.com','john'),new Intern('John',123,'john@john.com','school')];
 getManager()
     .then(manager => {
         return buildTeam(manager);
     })
     .then (() => {
-        console.log(newTeam);
+        return generatePage(dummyTeam);
+    })
+    .then(pageHTML => {
+        return writeFile(pageHTML);
+    })
+    .then(writeFileResponse => {
+        console.log(writeFileResponse);
+        return copyFile();
+    })
+    .then(copyFileResponse => {
+        console.log(copyFileResponse);
+    })
+    .catch(err => {
+        console.log(err);
     });
